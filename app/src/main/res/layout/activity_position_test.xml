@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <Button
+        android:id="@+id/button"
+        style="@style/button_style"
+        android:onClick="test"
+        android:text="@string/remove_header"/>
+
+    <ListView
+        android:id="@+id/test_lv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/button">
+
+    </ListView>
+</RelativeLayout>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.katherine.du.everydaystudy">
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.taobao.android.hotfix.IDSECRET"
+            android:value="24577779-1"/>
+        <meta-data
+            android:name="com.taobao.android.hotfix.APPSECRET"
+            android:value="a4d8ccbdc04cb42fcdcf0a4ac74ad3a3"/>
+        <meta-data
+            android:name="com.taobao.android.hotfix.RSASECRET"
+            android:value="MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCf5Y1WrWNR2FFRxuVLITZovCl5rJM3rIj78fLBrNTbzHXZ3G0zz9DphX74OWhS1zm334K9ai4mgslgD6CkAc0rorTZ5nhswCFCVZeIow/DkgakzTn/M//JldwKeo//5mr+HnwCbTKrI+xPv27c4FjW1XmtgbnsX9GoQ6pKozc1jQDqiWLFnGnaGWWOHurPf4qft9bo2Bv3K94gRqNOGq//wlbvIcgZ69JKFiGz2PFMWfHRYrdJMy8RahF6KGbStBgQswPY6rKA+hW4gPF1Lp0Rf6UIvo/BhQgp3d1buCgGHDAmtOb9l5rDNXCpXL60Dl1c2ZFMJVxgWcjWr0hcc6l5AgMBAAECggEAQfjUeA7SC9LUuoj10inB6TS5aBpsI2xsmIcbQg2tRYL2nQz1gYsdBzytRn1pLcTfa54sszo8EGel7pyECyczH+3h8IXG6hfboSLvgtDEkEyPsS973m/1+ZZ7U1d+Uncfbfnl8JpdbX9E4SJ6+2cVQI6TxaLgs0ZVmrdQa7sr7Eu42EbpuVNkJyW+wUALCJuVqNKRQA0EhNMHERMqE391epr0He/ydZ8xhGMaKkmtxYK/AnAdtoSVwDA8/b3Uy+I0Ntrf3AOcXYsy5e8Se4OMA5pJEg20/YMfk5/ZSZtN6OgmoXb3sPcChHhMKH8qeOVIS03spXh4UBTEFLfpAUIwAQKBgQDmXQxOhMF4CKFb191D015dEvSnfaFTLYWyR0gakV0LQHKaqpVvLJm5eUIAH4kJGukOmxz486zDne5cMw2FxMxKokT2U7x50KfHXlLZAvDdwcB609txayxkLpNX/YNZmdNre1orwUY6OwERD0TOWfqRBJ4Bp5jifCpyznQUyTtj8QKBgQCxsO/hqDECOs4FtQ5WA1aD2fBh1iy+UXRfnV21gxag3XOl6ofzYhh3m52cwbgzLtxlIdS9DzeIyvtHxwCmMDmZsPAcJgTJy4QjeRAspO3/eJYlPhAxUUVHXSbz27030A09wwIHgY5j6EqijFppASlMCUDJoI/UZR8Wn7+drN2GCQKBgQCNV5wcdSIL1yfCJXGSkxb7/ox0VAXu9ihpGYlpG7W+GJ34vh+QJgpwHbFcR/0ZxBQpLQ0axtBC+hztHzn10KkURfoQNZKYH2lCT2J/2mkVdzL1ahXjwkFrepRXUaoNCPAKq5XI8P547gkagYbTIaw23GFiXIXWuR6GcJwSwOGa0QKBgBdEukTsh25pUO1CZlwxF7UwZuAI8dcCR6D1tH2+asop9aj2a1Mdt2KCSENswrhBHK9JnNgdFAKfwgQGNTmN+xz7JJYrDFl4gxc6FTojZt8bZV3/IJO0tsO/mQg58C9M2U8LKErfVkwS8SMUCgrSEhxY4dkFY5BGpamKxcbaCjAxAoGBAJTFLBC0LJKTEomFk60eFPPdi9JVwhxKcdH5ieG5RiPxdjkIAbR436j5yIkbr+oIyxXa9PZgPmnyKGpsjUbYPGhlmZfMLYJSSi/U4UQBrNRpcDs+jjWY8pTXnXpvwGqXuojwRXz2pU7Ddm6tO1c3EyZamh7/gqJHtucHE8x9YtsC"/>
+
+        <activity android:name=".MainActivity">
+
+        </activity>
+        <activity android:name=".up20170804.MatisseTestActivity">
+
+        </activity>
+        <activity android:name=".up20170807.AutoScrollBackLayoutTestActivity"></activity>
+        <activity
+            android:name=".up20170807.RecyclerViewDemoActivity"
+            android:theme="@style/MyAppCompatTheme">
+
+        </activity>
+        <activity
+            android:name=".up20170807.ListViewDemoActivity"
+            android:theme="@style/MyAppCompatTheme">
+
+        </activity>
+        <activity
+            android:name=".up20170807.GridViewDemoActivity"
+            android:theme="@style/MyAppCompatTheme">
+
+        </activity>
+
+        <activity android:name=".up20170809.HotFixTestActivity">
+
+        </activity>
+
+        <activity android:name=".up20170810.RecyclerViewActivity">
+
+        </activity>
+        <activity android:name=".up20170808.NDKCMakeTestActivity">
+
+        </activity>
+        <activity android:name=".up20170817.ListViewPositionTestActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+        </activity>
+    </application>
+
+</manifest>

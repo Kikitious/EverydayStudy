@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">EverydayStudy</string>
+    <string name="app_hello">Hello</string>
+    <string name="remove_header">REMOVE HEADER</string>
+</resources>

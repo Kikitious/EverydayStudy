@@ -1,0 +1,12 @@
+
+
+DEX  Android编译出来的字节码，可执行文件的类型
+热更新  Sophix = Sophic + FIX 目前最稳定的热更新
+热更新包含  代码修复、资源修复、so库修复
+
+代码修复两大种类：底层替换+类加载修复
+资源修复：对比Instant Run进行
+
+
+http://zhuanlan.51cto.com/art/201706/542445.htm  热修复是啥及Sophix的介绍
+https://www.aliyun.com/product/hotfix 阿里云移动热修复
