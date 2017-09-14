@@ -3,4 +3,8 @@
     <string name="app_name">EverydayStudy</string>
     <string name="app_hello">Hello</string>
     <string name="remove_header">REMOVE HEADER</string>
+    <string name="check_info_notice_magic_order">点击确定表示您已阅读并同意 《%1$s》和《%2$s》 《%3$s》</string>
+    <string name="cki_confirm_notice1">网上办理乘机手续服务协议</string>
+    <string name="cki_confirm_notice2">危险品须知</string>
+    <string name="cki_confirm_notice3">预约选座服务协议</string>
 </resources>

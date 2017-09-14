@@ -13,11 +13,10 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         TextView tv = (TextView) findViewById(R.id.tv);
         tv.setText(test());
+        getString(R.string.build_time);
     }
 
     public static String test() {
-
-
         return String.valueOf(inc(10) + inc(8) + inc(-10));
     }
 

@@ -12,7 +12,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.widget.Toast;
 
 import com.katherine.du.everydaystudy.R;
@@ -26,7 +28,7 @@ public class MatisseTestActivity extends Activity {
 
     private static final int REQUEST_CODE_CHOOSE = 0X100;
     private static final int PERMISSION_REQUEST_CODE = 0x101;
-    String[] pess = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
+    private final String[] PERMISSIONS = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
 
     private Context context;
 
@@ -53,7 +55,7 @@ public class MatisseTestActivity extends Activity {
      */
     private void requestPermission() {
         if (!checkPermission()) {//如果没有权限则请求权限,"新的运行时权限机制"申请权限的Dialog并不会自动弹出，开发者必须手动申明调用
-            ActivityCompat.requestPermissions(this, pess, PERMISSION_REQUEST_CODE);
+            ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_REQUEST_CODE);
         } else {//如果有权限则直接写
             startOpenGellery();
         }
@@ -61,11 +63,9 @@ public class MatisseTestActivity extends Activity {
 
     /**
      * 检测是否有读写权限，没有返回FALSE；有则返回TRUE
-     *
-     * @return
      */
     private boolean checkPermission() {
-        for (String permission : pess) {
+        for (String permission : PERMISSIONS) {
             if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
                 // 只要有一个权限没有被授予, 则直接返回 false
                 return false;
@@ -76,10 +76,6 @@ public class MatisseTestActivity extends Activity {
 
     /**
      * 权限请求的返回结果
-     *
-     * @param requestCode
-     * @param permissions
-     * @param grantResults
      */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -101,7 +97,10 @@ public class MatisseTestActivity extends Activity {
     }
 
     private void startOpenGellery() {
-        int width = getWindow().getWindowManager().getDefaultDisplay().getWidth();
+        Display defaultDisplay = getWindow().getWindowManager().getDefaultDisplay();
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        defaultDisplay.getMetrics(outMetrics);
+        int width = outMetrics.widthPixels;
         int photoSize = (int) (width / getResources().getDisplayMetrics().density + 0.5f);
 
         Matisse.from(this)

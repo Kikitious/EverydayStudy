@@ -1,8 +1,12 @@
+import java.util.concurrent.TimeUnit
+import org.gradle.internal.time.Clock
+
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion "26.0.0"
+
     defaultConfig {
         applicationId "com.katherine.du.everydaystudy"
         minSdkVersion 21
@@ -10,16 +14,95 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        resValue("string", "build_time", buildTime())
     }
+    //打包签名配置
+    signingConfigs {
+        release {
+            keyAlias System.properties['keyAlias']
+            keyPassword System.properties['keyAliasPassword']
+            storeFile file('/Users/du/AndroidProjectForGerrit/EverydayStudy/hotfix.jks')
+            storePassword System.properties['keyStorePassword']
+            v2SigningEnabled false
+        }
+        dhl {
+            keyAlias System.properties['keyAlias']
+            keyPassword System.properties['keyAliasPassword']
+            storeFile file('/Users/du/AndroidProjectForGerrit/EverydayStudy/hotfix.jks')
+            storePassword System.properties['keyStorePassword']
+            v2SigningEnabled false
+        }
+    }
+    //通过创建不同的构建类型，生成不同类型的apk
     buildTypes {
         release {
-            minifyEnabled false
+            buildConfigField("boolean", "testFlag", "true")
+            signingConfig signingConfigs.release
+            //minifyEnabled用来对代码进行混淆，其次还可以搭配shrinkResources指令清除工程中无效的资源文件
+            minifyEnabled true
+            //使用shrinkResources指令时必须依赖minifyEnabled指令才能生效
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        dhl {
+            buildConfigField("boolean", "testFlag", "false")
+            signingConfig signingConfigs.dhl
+            applicationIdSuffix ".dhl"  //给默认的包名增加一个后缀".dhl"
+        }
+    }
+    productFlavors {
+        main {
+            applicationId "com.katherine.du.everydaystudy"
+        }
+        huawei {
+            manifestPlaceholders = [CHANNEL_VALUE: "huawei"]
+            applicationId 'com.katherine.du.everydaystudy.huawei'
+        }
+        xiaomi {
+            manifestPlaceholders = [CHANNEL_VALUE: "xiaomi"]
+            applicationId 'com.katherine.du.everydaystudy.xiaomi'
+        }
+        oppo {
+            manifestPlaceholders = [CHANNEL_VALUE: "oppo"]
+            applicationId 'com.katherine.du.everydaystudy.oppp'
         }
     }
     repositories {
         jcenter()
     }
+    lintOptions {
+        abortOnError false
+    }
+    aaptOptions {
+        cruncherEnabled = false
+    }
+    //开启Gradle的增量编译，增加编译的内存资源到4G，用来增加编译速度
+    dexOptions {
+        // The `android.dexOptions.incremental` property is deprecated and it has no effect on the build process.
+        //Incremental Java compilation is ON by default.
+        //incremental true
+        javaMaxHeapSize "4g"
+    }
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            if (output.outputFile != null && output.outputFile.name.endsWith('.apk') &&
+                    'release'.equalsIgnoreCase(variant.buildType.name)) {
+                def apkFile = new File(output.outputFile.getParent(),
+                        "app_${variant.flavorName}_ver${variant.versionName}.apk")
+                output.outputFile = apkFile
+            }
+
+        }
+
+    }
+    configurations.all {
+        resolutionStrategy.cacheChangingModulesFor(0, TimeUnit.SECONDS)
+    }
+
+}
+
+def static buildTime() {
+    return new Date().format("yyyy-MM-dd HH:mm:ss")
 }
 
 repositories {
@@ -28,6 +111,74 @@ repositories {
     }
 }
 
+task printProperties {
+    doFirst {
+        println('do First')
+    }
+    println(project)
+    println(project.name)
+    println(project.buildDir)
+    println(project.buildFile)
+    println(project.version)
+    println(name)
+    println(buildDir)
+    println(path)
+    doLast {
+        println('do Last')
+    }
+}
+
+task testcmd {
+    //Gradle调用终端指令
+    println('git log --pretty=oneline -1'.execute([], project.rootDir).text)
+}
+
+gradle.addListener(new LifecycleListener())
+
+class LifecycleListener implements TaskExecutionListener, BuildListener {
+    private Clock clock
+    private execution = []
+
+    @Override
+    void buildStarted(Gradle gradle) {
+
+    }
+
+    @Override
+    void settingsEvaluated(Settings settings) {
+
+    }
+
+    @Override
+    void projectsLoaded(Gradle gradle) {
+
+    }
+
+    @Override
+    void projectsEvaluated(Gradle gradle) {
+
+    }
+
+    @Override
+    void buildFinished(BuildResult result) {
+        println("Task Execute Time:")
+        for (time in execution) {
+            printf("%7sms  %s\n", time)
+        }
+    }
+
+    @Override
+    void beforeExecute(Task task) {
+        clock = new Clock()
+    }
+
+    @Override
+    void afterExecute(Task task, TaskState state) {
+        def ms = clock.elapsedMillis
+        execution.add([ms, task.path])
+        println("Task:${task.path} took ${ms}ms")
+    }
+}
 
 
 dependencies {
@@ -37,17 +188,17 @@ dependencies {
     })
     //20170807
     compile project(':autoscrollbacklayout')
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     //20170804
+    //20170809
+    //20170810
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.zhihu.android:matisse:0.4.3'
-    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
+    compile rootProject.ext.dependencies.ESappcompat_supportv7
     compile 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.1@aar'
     compile 'io.reactivex.rxjava2:rxjava:2.0.5'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
-    testCompile 'junit:junit:4.12'
-    //20170809
     compile 'com.aliyun.ams:alicloud-android-hotfix:3.0.9'
-    //20170810
-    compile 'com.android.support:recyclerview-v7:26.0.0-alpha1'
+    compile 'com.android.support:recyclerview-v7:25.3.1'
+    testCompile 'junit:junit:4.12'
 }

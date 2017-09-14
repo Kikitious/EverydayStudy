@@ -1,0 +1,5 @@
+ext {
+    android = [compileSdkVersion: 25]
+
+    dependencies = [ESappcompat_supportv7: 'com.android.support:appcompat-v7:25.3.1']
+}
