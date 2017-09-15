@@ -1,30 +1,43 @@
 package com.katherine.du.everydaystudy;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
-public class MainActivity extends Activity {
+import com.android.debug.hv.ViewServer;
+import com.katherine.du.everydaystudy.up20170804.MatisseTestActivity;
+
+public class MainActivity extends BaseActivity {
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ViewServer.get(this).addWindow(this);
         TextView tv = (TextView) findViewById(R.id.tv);
-        tv.setText(test());
-        getString(R.string.build_time);
+        tv.setText(getString(R.string.build_time));
+        tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, MatisseTestActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
-    public static String test() {
-        return String.valueOf(inc(10) + inc(8) + inc(-10));
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ViewServer.get(this).setFocusedWindow(this);
     }
 
-    public static int inc(int temp) {
-        if (temp > 0) {
-            return temp * 2;
-        }
-        return -1;
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ViewServer.get(this).removeWindow(this);
     }
-
 }

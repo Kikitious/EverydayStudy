@@ -201,4 +201,5 @@ dependencies {
     compile 'com.aliyun.ams:alicloud-android-hotfix:3.0.9'
     compile 'com.android.support:recyclerview-v7:25.3.1'
     testCompile 'junit:junit:4.12'
+    compile 'com.hanhuy.android:viewserver:1.0.3'
 }

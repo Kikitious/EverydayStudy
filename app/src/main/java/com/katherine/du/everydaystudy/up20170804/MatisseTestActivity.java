@@ -1,7 +1,6 @@
 package com.katherine.du.everydaystudy.up20170804;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -17,6 +16,7 @@ import android.util.Log;
 import android.view.Display;
 import android.widget.Toast;
 
+import com.katherine.du.everydaystudy.BaseActivity;
 import com.katherine.du.everydaystudy.R;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
@@ -24,7 +24,7 @@ import com.zhihu.matisse.engine.impl.GlideEngine;
 
 import java.util.List;
 
-public class MatisseTestActivity extends Activity {
+public class MatisseTestActivity extends BaseActivity {
 
     private static final int REQUEST_CODE_CHOOSE = 0X100;
     private static final int PERMISSION_REQUEST_CODE = 0x101;

@@ -1,6 +1,5 @@
 package com.katherine.du.everydaystudy.up20170824;
 
-import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -12,12 +11,13 @@ import android.text.style.URLSpan;
 import android.view.View;
 import android.widget.TextView;
 
+import com.katherine.du.everydaystudy.BaseActivity;
 import com.katherine.du.everydaystudy.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestLinkActivity extends Activity {
+public class TestLinkActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

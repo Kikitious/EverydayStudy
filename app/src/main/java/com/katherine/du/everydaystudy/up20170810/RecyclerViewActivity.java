@@ -1,6 +1,5 @@
 package com.katherine.du.everydaystudy.up20170810;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
@@ -11,6 +10,7 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.ListView;
 
+import com.katherine.du.everydaystudy.BaseActivity;
 import com.katherine.du.everydaystudy.R;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
  * Created by du on 17/8/10.
  */
 
-public class RecyclerViewActivity extends Activity {
+public class RecyclerViewActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

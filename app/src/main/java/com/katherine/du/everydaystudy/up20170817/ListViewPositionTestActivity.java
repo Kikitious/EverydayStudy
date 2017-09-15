@@ -1,6 +1,5 @@
 package com.katherine.du.everydaystudy.up20170817;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -11,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.katherine.du.everydaystudy.BaseActivity;
 import com.katherine.du.everydaystudy.R;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ import java.util.List;
  *
  * created by du at 17/8/22
  */
-public class ListViewPositionTestActivity extends Activity {
+public class ListViewPositionTestActivity extends BaseActivity {
     private static final String TAG = "ListViewPositionTestAct";
     private ListView listView;
     private List<String> datas;

@@ -1,13 +1,13 @@
 package com.katherine.du.everydaystudy.up20170807;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.katherine.du.everydaystudy.BaseActivity;
 import com.katherine.du.everydaystudy.R;
 
-public class AutoScrollBackLayoutTestActivity extends Activity implements View.OnClickListener {
+public class AutoScrollBackLayoutTestActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

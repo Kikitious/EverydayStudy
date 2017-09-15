@@ -32,13 +32,14 @@
             android:value="${CHANNEL_VALUE}"/>
 
         <activity android:name=".MainActivity">
-        </activity>
-        <activity android:name=".up20170804.MatisseTestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name=".up20170804.MatisseTestActivity">
+
         </activity>
         <activity android:name=".up20170807.AutoScrollBackLayoutTestActivity"/>
         <activity
