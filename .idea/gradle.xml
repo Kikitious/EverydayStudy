@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/autoscrollbacklayout" />
             <option value="$PROJECT_DIR$/ddm_lib" />
+            <option value="$PROJECT_DIR$/javatestlib" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

@@ -81,6 +81,9 @@
         <activity android:name=".up20170922.LeakCanaryTestActivity">
 
         </activity>
+        <activity android:name=".up20170925.WeakReferenceActivity">
+
+        </activity>
     </application>
 
 </manifest>
