@@ -84,6 +84,9 @@
         <activity android:name=".up20170925.WeakReferenceActivity">
 
         </activity>
+        <activity android:name=".up20170926.MemoryLeakageTest">
+
+        </activity>
     </application>
 
 </manifest>

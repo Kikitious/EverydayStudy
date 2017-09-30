@@ -1,5 +1,6 @@
 package com.example;
 
+import java.lang.ref.PhantomReference;
 import java.lang.ref.ReferenceQueue;
 import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
@@ -8,35 +9,65 @@ public class ReferenceTest {
 
     public static void main(String[] args) {
         //testSoftReference();
-        testWeakReference();
+        //testSoftReferenceWithQueue();
+        //testWeakReference();
         //testWeakReferenceWithQueue();
-
+        //testPhantomReference();
     }
 
-    private static void testWeakReferenceWithQueue() {
-        A a = new A();
-        System.out.println("a对象为" + a);
+    /**
+     * 虚引用
+     */
+    private static void testPhantomReference() {
+        Person person = new Person();
+        System.out.println("person对象为" + person);
 
-        ReferenceQueue<A> rq = new ReferenceQueue<>();
-        WeakReference<A> wrA = new WeakReference<A>(a, rq);
-        System.out.println("wrA对象为" + wrA);
+        ReferenceQueue<Person> queue = new ReferenceQueue<>();
+        PhantomReference<Person> pr = new PhantomReference<>(person, queue);
+        System.out.println("pr对象为" + pr);
+        System.out.println("pr.get()=" + pr.get());
 
-        a = null;
-
-        if (wrA.get() == null) {
-            System.out.println("a对象进入GC流程");
-        } else {
-            System.out.println("a对象尚未被回收" + wrA.get());
-        }
-        System.out.println("Whether or not this reference has been enqueued: " + wrA.isEnqueued());
-        System.out.println("rq item:" + rq.poll());
+        person = null;
+        System.out.println("queue item:" + queue.poll());
 
         System.gc();
 
-        if (wrA.get() == null) {//仅是表明其指示的对象已经进入垃圾回收流程，此时对象不一定已经被垃圾回收。只有确认被垃圾回收后，如果有ReferenceQueue，其引用才会被放置于ReferenceQueue中
-            System.out.println("a对象进入GC流程");
+        try {
+            //确保垃圾回收线程能够执行
+            Thread.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("queue item: " + queue.poll());
+    }
+
+    /**
+     * 弱引用
+     */
+    private static void testWeakReferenceWithQueue() {
+        Person person = new Person();
+        System.out.println("person对象为" + person);
+
+        ReferenceQueue<Person> queue = new ReferenceQueue<>();
+        WeakReference<Person> wr = new WeakReference<Person>(person, queue);
+        System.out.println("wr对象为" + wr);
+
+        person = null;
+
+        if (wr.get() == null) {
+            System.out.println("person对象进入GC流程");
         } else {
-            System.out.println("a对象尚未被回收" + wrA.get());
+            System.out.println("person对象尚未被回收" + wr.get());
+        }
+        System.out.println("Whether or not this reference has been enqueued: " + wr.isEnqueued());
+        System.out.println("queue item:" + queue.poll());
+
+        System.gc();
+
+        if (wr.get() == null) {//仅是表明其指示的对象已经进入垃圾回收流程，此时对象不一定已经被垃圾回收。只有确认被垃圾回收后，如果有ReferenceQueue，其引用才会被放置于ReferenceQueue中
+            System.out.println("person对象进入GC流程");
+        } else {
+            System.out.println("person对象尚未被回收" + wr.get());
         }
         try {
             //确保垃圾回收线程能够执行
@@ -45,76 +76,94 @@ public class ReferenceTest {
             e.printStackTrace();
         }
 
-        System.out.println("Whether or not this reference has been enqueued: " + wrA.isEnqueued());
-        System.out.println("rq item:" + rq.poll());
-
+        System.out.println("Whether or not this reference has been enqueued: " + wr.isEnqueued());
+        System.out.println("queue item:" + queue.poll());
     }
 
 
     /**
-     * 弱引用存在的意义
+     * 弱引用
      */
     private static void testWeakReference() {
-        A a = new A();
-        System.out.println("a对象为" + a);
+        Person person = new Person();
+        System.out.println("person对象为" + person);
 
-        WeakReference<A> wrA = new WeakReference<>(a);
-        a = null;
-        //之前new出的A对象会立即被回收，进入GC流程
+        WeakReference<Person> wr = new WeakReference<>(person);
+        person = null;
+        //被GC后，之前new出的erson对象会立即被回收，进入GC流程
 
-        if (wrA.get() == null) {
-            System.out.println("a对象进入GC流程");
+        if (wr.get() == null) {
+            System.out.println("person对象进入GC流程");
         } else {
-            System.out.println("a对象尚未被回收" + wrA.get());
-            A person = wrA.get();
+            System.out.println("person对象尚未被回收" + wr.get());
         }
 
         System.gc();
 
-        if (wrA.get() == null) {
-            System.out.println("a对象进入GC流程");
+        if (wr.get() == null) {
+            System.out.println("person对象进入GC流程");
         } else {
-            System.out.println("a对象尚未被回收" + wrA.get());
-            A person = wrA.get();
+            System.out.println("person对象尚未被回收" + wr.get());
         }
-
-
     }
 
+    /**
+     * 软引用
+     */
+    private static void testSoftReferenceWithQueue() {
+        Person person = new Person();
+        System.out.println("person对象为" + person);
+
+        ReferenceQueue<Person> queue = new ReferenceQueue<>();
+        SoftReference<Person> sr = new SoftReference<Person>(person, queue);
+        person = null;//之前new出的Person对象不会立即被回收，除非JVM需要内存(OOM之前)
+
+        if (sr.get() == null) {
+            System.out.println("person对象进入GC流程");
+        } else {
+            System.out.println("person对象尚未被回收" + sr.get());
+        }
+        System.out.println("加入ReferenceQueue的对象为" + queue.poll());
+
+        System.gc();
+
+        if (sr.get() == null) {
+            System.out.println("person对象进入GC流程");
+        } else {
+            System.out.println("person对象尚未被回收" + sr.get());
+        }
+        System.out.println("加入ReferenceQueue的对象为" + queue.poll());
+    }
 
     /**
      * 软引用
      */
     private static void testSoftReference() {
-        A a = new A();
-        System.out.println("a对象为" + a);
+        Person person = new Person();
+        System.out.println("person对象为" + person);
 
-        SoftReference<A> srA = new SoftReference<A>(a);
-        a = null;
-        //之前new出的A对象不会立即被回收，除非JVM需要内存(OOM之前)
+        SoftReference<Person> sr = new SoftReference<Person>(person);
+        person = null;//之前new出的Person对象不会立即被回收，除非JVM需要内存(OOM之前)
 
-        if (srA.get() == null) {
-            System.out.println("a对象进入GC流程");
+        if (sr.get() == null) {
+            System.out.println("person对象进入GC流程");
         } else {
-            System.out.println("a对象尚未被回收" + srA.get());
-            A person = srA.get();
+            System.out.println("person对象尚未被回收" + sr.get());
         }
 
         System.gc();
 
-        if (srA.get() == null) {
-            System.out.println("a对象进入GC流程");
+        if (sr.get() == null) {
+            System.out.println("person对象进入GC流程");
         } else {
-            System.out.println("a对象尚未被回收" + srA.get());
-            A person = srA.get();
+            System.out.println("person对象尚未被回收" + sr.get());
         }
     }
 
 
-    static class A {
+    static class Person {
 
         private String name;
-        private String sex;
 
         public String getName() {
             return name;
@@ -124,18 +173,10 @@ public class ReferenceTest {
             this.name = name;
         }
 
-        public String getSex() {
-            return sex;
-        }
-
-        public void setSex(String sex) {
-            this.sex = sex;
-        }
-
         @Override
         protected void finalize() throws Throwable {
             super.finalize();
-            System.out.println("in A finalize");
+            System.out.println("in Person finalize");
         }
     }
 
