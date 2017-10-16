@@ -15,6 +15,7 @@ public class ReferenceTest {
         //testPhantomReference();
     }
 
+
     /**
      * 虚引用
      */
@@ -179,5 +180,9 @@ public class ReferenceTest {
             System.out.println("in Person finalize");
         }
     }
+
+}
+
+class Rst {
 
 }
