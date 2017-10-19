@@ -87,6 +87,12 @@
         <activity android:name=".up20170926.MemoryLeakageTest">
 
         </activity>
+        <activity android:name=".up20171012.HandlerTestActivity">
+
+        </activity>
+        <activity android:name=".up20171012.AsyncTaskTestActivity">
+
+        </activity>
     </application>
 
 </manifest>
