@@ -93,6 +93,12 @@
         <activity android:name=".up20171012.AsyncTaskTestActivity">
 
         </activity>
+        <activity android:name=".up20171019.ExecutorTestActivity">
+
+        </activity>
+        <activity android:name=".up20171025.FilePathActivity">
+
+        </activity>
     </application>
 
 </manifest>
