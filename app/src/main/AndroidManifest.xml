@@ -99,6 +99,9 @@
         <activity android:name=".up20171025.FilePathActivity">
 
         </activity>
+        <activity android:name=".up20171025.MediaProjectionActivity">
+
+        </activity>
     </application>
 
 </manifest>
