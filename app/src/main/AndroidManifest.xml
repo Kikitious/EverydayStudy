@@ -100,7 +100,8 @@
 
         </activity>
         <activity android:name=".up20171025.MediaProjectionActivity">
-
+        </activity>
+        <activity android:name=".up20171027.LongScreenShotActivity">
         </activity>
     </application>
 

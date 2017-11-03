@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.katherine.du.everydaystudy"
-        minSdkVersion 21
+        minSdkVersion 14
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
