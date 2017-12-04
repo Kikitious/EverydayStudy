@@ -1,4 +1,4 @@
-package com.katherine.du.everydaystudy.up20171121;
+package com.katherine.du.everydaystudy.up20171121.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +12,6 @@ import com.katherine.du.everydaystudy.BaseActivity;
 import com.katherine.du.everydaystudy.MainActivity;
 import com.katherine.du.everydaystudy.R;
 import com.katherine.du.everydaystudy.up20171121.presenter.LoginPresenter;
-import com.katherine.du.everydaystudy.up20171121.view.ILoginView;
 
 /**
  * Created by du on 17/11/21.

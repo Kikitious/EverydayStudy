@@ -98,7 +98,7 @@
         </activity>
         <activity android:name=".up20171027.LongScreenShotActivity">
         </activity>
-        <activity android:name=".up20171121.LoginActivity">
+        <activity android:name=".up20171121.view.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
