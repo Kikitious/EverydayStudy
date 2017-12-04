@@ -5,4 +5,17 @@ package com.katherine.du.everydaystudy.up20171121.view;
  */
 
 public interface ILoginView {
+
+    String getUserName();
+
+    String getPassward();
+
+    void hideLoading();
+
+    void showLoading();
+
+    void showToast(String msg);
+
+    void goToMainActivity();
+
 }

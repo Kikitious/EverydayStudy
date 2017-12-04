@@ -32,11 +32,6 @@
             android:value="${CHANNEL_VALUE}"/>
 
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity android:name=".up20170804.MatisseTestActivity">
 
@@ -102,6 +97,13 @@
         <activity android:name=".up20171025.MediaProjectionActivity">
         </activity>
         <activity android:name=".up20171027.LongScreenShotActivity">
+        </activity>
+        <activity android:name=".up20171121.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
     </application>
 

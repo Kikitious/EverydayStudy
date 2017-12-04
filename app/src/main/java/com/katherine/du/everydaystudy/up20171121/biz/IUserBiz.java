@@ -5,4 +5,6 @@ package com.katherine.du.everydaystudy.up20171121.biz;
  */
 
 public interface IUserBiz {
+
+    void login(String usrname, String pwd, OnLoginListener listener);
 }
