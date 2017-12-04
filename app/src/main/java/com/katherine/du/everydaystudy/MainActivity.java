@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.android.debug.hv.ViewServer;
-import com.katherine.du.everydaystudy.up20171027.LongScreenShotActivity;
+import com.katherine.du.everydaystudy.up20171027.ParkingDateSelectorActivity;
 
 public class MainActivity extends BaseActivity {
 
@@ -22,7 +22,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(MainActivity.this, LongScreenShotActivity.class);
+                intent.setClass(MainActivity.this, ParkingDateSelectorActivity.class);
                 startActivity(intent);
             }
         });
