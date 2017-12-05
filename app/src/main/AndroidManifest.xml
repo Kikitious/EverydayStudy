@@ -99,6 +99,8 @@
         <activity android:name=".up20171027.LongScreenShotActivity">
         </activity>
         <activity android:name=".up20171121.view.LoginActivity">
+        </activity>
+        <activity android:name=".up20171205.ui.activity.WeatherActivty">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

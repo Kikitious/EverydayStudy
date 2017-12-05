@@ -3,6 +3,7 @@ package com.katherine.du.everydaystudy;
 import android.app.Application;
 import android.content.pm.PackageManager;
 
+import com.katherine.du.everydaystudy.up20171205.net.VolleyRequest;
 import com.squareup.leakcanary.LeakCanary;
 import com.taobao.sophix.PatchStatus;
 import com.taobao.sophix.SophixManager;
@@ -16,6 +17,7 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        VolleyRequest.buildRequestQueue(this);
         LeakCanary.install(this);
         initSophix();
     }
