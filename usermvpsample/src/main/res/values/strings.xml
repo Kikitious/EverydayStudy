@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">UserMvpSample</string>
+    <string name="save">存 取</string>
+    <string name="load">读 取</string>
+    <string name="id">USER ID :</string>
+    <string name="firstname">FirstName:</string>
+    <string name="lastname">LastName:</string>
+
+</resources>

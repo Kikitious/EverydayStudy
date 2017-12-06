@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/ddm_lib/ddm_lib.iml" filepath="$PROJECT_DIR$/ddm_lib/ddm_lib.iml" />
       <module fileurl="file://$PROJECT_DIR$/javalib8/javalib8.iml" filepath="$PROJECT_DIR$/javalib8/javalib8.iml" />
       <module fileurl="file://$PROJECT_DIR$/javatestlib/javatestlib.iml" filepath="$PROJECT_DIR$/javatestlib/javatestlib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/usermvpsample/usermvpsample.iml" filepath="$PROJECT_DIR$/usermvpsample/usermvpsample.iml" />
     </modules>
   </component>
 </project>

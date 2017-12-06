@@ -1,1 +1,1 @@
-include ':app', ':autoscrollbacklayout', ':ddm_lib', ':javatestlib', ':javalib8'
+include ':app', ':autoscrollbacklayout', ':ddm_lib', ':javatestlib', ':javalib8', ':usermvpsample'
