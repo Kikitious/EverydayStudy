@@ -4,6 +4,17 @@ public class MyClass {
 
 
     public static void main(String[] args) {
+        test();
+        System.out.println(binarySearch(new int[]{2, 4, 5, 8, 17, 24, 44, 52}, 6, 6));
+        System.out.println(~3);
+        System.out.println(~4);
+        System.out.println(~5);
+
+        System.out.println(Integer.parseInt("0000000000000100", 2));
+
+    }
+
+    private static void test() {
         int number = 20;
 
         int rounded = number >= 30 ? 30 :
@@ -27,7 +38,26 @@ public class MyClass {
             }
         }
         System.out.println(round);
+    }
 
+
+    static int binarySearch(int[] array, int size, int value) {
+        int lo = 0;
+        int hi = size - 1;
+
+        while (lo <= hi) {
+            final int mid = (lo + hi) >>> 1;
+            final int midVal = array[mid];
+
+            if (midVal < value) {
+                lo = mid + 1;
+            } else if (midVal > value) {
+                hi = mid - 1;
+            } else {
+                return mid;  // value found
+            }
+        }
+        return ~lo;  // value not present
     }
 
 }
