@@ -1,4 +1,4 @@
-package com.katherine.du.everydaystudy.up20171214;
+package com.katherine.du.everydaystudy.up20171214.serializaleparcelable;
 
 import java.io.Serializable;
 
