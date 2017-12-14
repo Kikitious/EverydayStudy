@@ -1,4 +1,4 @@
-package com.katherine.du.everydaystudy.up20171214.aidl;
+package com.katherine.du.everydaystudy;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -11,6 +11,21 @@ public class Book implements Parcelable {
     private String bookName;
     private int bookId;
 
+    public String getBookName() {
+        return bookName;
+    }
+
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
+    }
+
+    public int getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
+    }
 
     public Book(String bookName, int bookId) {
         this.bookName = bookName;

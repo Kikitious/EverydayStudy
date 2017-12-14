@@ -1,5 +1,5 @@
 // Book.aidl
 package com.katherine.du.everydaystudy;
-import com.katherine.du.everydaystudy.up20171214.aidl.Book;
+import com.katherine.du.everydaystudy.Book;
 
 parcelable Book;

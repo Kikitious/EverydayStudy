@@ -50,6 +50,11 @@ android {
             applicationIdSuffix ".dhl"  //给默认的包名增加一个后缀".dhl"
         }
     }
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/java', 'src/main/aidl']
+        }
+    }
     productFlavors {
         main {
             manifestPlaceholders = [CHANNEL_VALUE: ""]

@@ -101,12 +101,20 @@
         <activity android:name=".up20171121.view.LoginActivity">
         </activity>
         <activity android:name=".up20171205.ui.activity.WeatherActivty">
+        </activity>
+        <activity android:name="com.katherine.du.everydaystudy.up20171214.aidl.client.BookManagerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <!--另一个进程-->
+        <service
+            android:name="com.katherine.du.everydaystudy.up20171214.aidl.server.BookManagerService"
+            android:process=":remote">
+        </service>
     </application>
 
 </manifest>
