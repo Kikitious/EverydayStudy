@@ -103,6 +103,8 @@
         <activity android:name=".up20171205.ui.activity.WeatherActivty">
         </activity>
         <activity android:name="com.katherine.du.everydaystudy.up20171214.aidl.client.BookManagerActivity">
+        </activity>
+        <activity android:name="com.katherine.du.everydaystudy.up20171214.contentprovider.ProviderActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -115,6 +117,12 @@
             android:name="com.katherine.du.everydaystudy.up20171214.aidl.server.BookManagerService"
             android:process=":remote">
         </service>
+
+        <provider
+            android:name=".up20171214.contentprovider.remoteprovider.BookProvider"
+            android:authorities="com.katherine.du.everydaystudy.provider"
+            android:process=":provider">
+        </provider>
     </application>
 
 </manifest>
