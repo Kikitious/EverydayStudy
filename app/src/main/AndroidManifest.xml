@@ -105,6 +105,8 @@
         <activity android:name="com.katherine.du.everydaystudy.up20171214.aidl.client.BookManagerActivity">
         </activity>
         <activity android:name="com.katherine.du.everydaystudy.up20171214.contentprovider.ProviderActivity">
+        </activity>
+        <activity android:name="com.katherine.du.everydaystudy.up20171219.handlerthread.MyHandlerThreadActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
