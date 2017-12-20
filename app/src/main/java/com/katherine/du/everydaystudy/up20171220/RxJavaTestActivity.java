@@ -4,9 +4,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.katherine.du.everydaystudy.BaseActivity;
+import com.katherine.du.everydaystudy.R;
 import com.katherine.du.everydaystudy.up20171220.api.Api;
 import com.katherine.du.everydaystudy.up20171220.db.DbHelper;
 import com.katherine.du.everydaystudy.up20171220.entity.UserInfo;
@@ -19,9 +22,16 @@ import com.katherine.du.everydaystudy.up20171220.response.RegisterResopnse;
 import com.katherine.du.everydaystudy.up20171220.response.UserBaseInfoResponse;
 import com.katherine.du.everydaystudy.up20171220.response.UserExtraInfoResponse;
 
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.BackpressureStrategy;
+import io.reactivex.Flowable;
+import io.reactivex.FlowableEmitter;
+import io.reactivex.FlowableOnSubscribe;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
@@ -41,12 +51,67 @@ import retrofit2.Retrofit;
 
 public class RxJavaTestActivity extends BaseActivity {
     private static final String TAG = "RxJavaTestActivity";
+    private Subscription mSubscription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_rxjava_test);
+        testFlowable();
+    }
 
-        test();
+    public void testFlowable() {
+        Button button = (Button) findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSubscription.request(48);
+            }
+        });
+        Flowable.create(new FlowableOnSubscribe<Integer>() {
+            @Override
+            public void subscribe(FlowableEmitter<Integer> emitter) throws Exception {
+                Log.d(TAG, "First requested = " + emitter.requested());
+                boolean flag;
+                for (int i = 0; ; i++) {
+                    flag = false;
+                    while (emitter.requested() == 0) {
+                        if (!flag) {
+                            Log.d(TAG, "Oh no! I can't emit value!");
+                            flag = true;
+                        }
+                    }
+                    emitter.onNext(i);
+                    Log.d(TAG, "emit " + i + " , requested = " + emitter.requested());
+                }
+            }
+        }, BackpressureStrategy.ERROR)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<Integer>() {
+
+                    @Override
+                    public void onSubscribe(Subscription s) {
+                        Log.d(TAG, "onSubscribe");
+                        mSubscription = s;
+                    }
+
+                    @Override
+                    public void onNext(Integer integer) {
+                        Log.d(TAG, "onNext: " + integer);
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+                        Log.w(TAG, "onError: ", t);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Log.d(TAG, "onComplete");
+                    }
+                });
+
     }
 
     private void getUserInfo() {
