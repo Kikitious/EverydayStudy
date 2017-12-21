@@ -3,9 +3,11 @@ package com.katherine.du.everydaystudy.up20171220;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.katherine.du.everydaystudy.BaseActivity;
@@ -25,6 +27,9 @@ import com.katherine.du.everydaystudy.up20171220.response.UserExtraInfoResponse;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,7 +62,62 @@ public class RxJavaTestActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rxjava_test);
-        testFlowable();
+        readText();
+    }
+
+    public void readText() {
+        final TextView textView = (TextView) findViewById(R.id.textView);
+        final File directory = Environment.getExternalStorageDirectory();
+        final StringBuffer sb = new StringBuffer();
+        Flowable
+                .create(new FlowableOnSubscribe<String>() {
+                    @Override
+                    public void subscribe(FlowableEmitter<String> e) throws Exception {
+                        try {
+                            FileReader reader = new FileReader(directory + "/haha.pdf");
+                            BufferedReader br = new BufferedReader(reader);
+                            String str;
+                            while ((str = br.readLine()) != null && !e.isCancelled()) {
+                                while (e.requested() == 0) {
+                                    if (e.isCancelled()) {
+                                        break;
+                                    }
+                                }
+                                e.onNext(str);
+                            }
+
+                            br.close();
+                            reader.close();
+                            e.onComplete();
+                        } catch (Exception err) {
+                            e.onError(err);
+                        }
+                    }
+                }, BackpressureStrategy.ERROR)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<String>() {
+                    @Override
+                    public void onSubscribe(Subscription s) {
+                        mSubscription = s;
+                        s.request(1);
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+                        sb.append(s);
+                        mSubscription.request(1);
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        textView.setText(sb);
+                    }
+                });
     }
 
     public void testFlowable() {
