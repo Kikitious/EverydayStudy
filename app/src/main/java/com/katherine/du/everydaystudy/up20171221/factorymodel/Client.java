@@ -1,6 +1,7 @@
 package com.katherine.du.everydaystudy.up20171221.factorymodel;
 
-import com.katherine.du.everydaystudy.up20171221.factorymodel.factory.Factory;
+import com.katherine.du.everydaystudy.up20171221.factorymodel.factory.BenzFactory;
+import com.katherine.du.everydaystudy.up20171221.factorymodel.factory.BmwFactory;
 import com.katherine.du.everydaystudy.up20171221.factorymodel.product.ICar;
 
 /**
@@ -10,8 +11,13 @@ import com.katherine.du.everydaystudy.up20171221.factorymodel.product.ICar;
 public class Client {
 
     public static void main(String[] args) {
-        ICar car = Factory.createCar();
-        car.show();
+        BmwFactory bmwFactory = new BmwFactory();
+        ICar bmwCar = bmwFactory.createCar();
+        bmwCar.show();
+
+        BenzFactory benzFactory = new BenzFactory();
+        ICar benzCar = benzFactory.createCar();
+        benzCar.show();
     }
 }
 

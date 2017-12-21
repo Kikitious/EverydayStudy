@@ -9,5 +9,4 @@ import com.katherine.du.everydaystudy.up20171221.factorymodel.product.ICar;
 public interface IFactory {
 
     ICar createCar();
-
 }
