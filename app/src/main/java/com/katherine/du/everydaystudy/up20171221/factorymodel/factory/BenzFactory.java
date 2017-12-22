@@ -1,7 +1,9 @@
 package com.katherine.du.everydaystudy.up20171221.factorymodel.factory;
 
+import com.katherine.du.everydaystudy.up20171221.factorymodel.product.BenzBicycle;
 import com.katherine.du.everydaystudy.up20171221.factorymodel.product.BenzCar;
 import com.katherine.du.everydaystudy.up20171221.factorymodel.product.Engine;
+import com.katherine.du.everydaystudy.up20171221.factorymodel.product.IBicycle;
 import com.katherine.du.everydaystudy.up20171221.factorymodel.product.ICar;
 import com.katherine.du.everydaystudy.up20171221.factorymodel.product.Underpan;
 import com.katherine.du.everydaystudy.up20171221.factorymodel.product.Wheel;
@@ -19,5 +21,10 @@ public final class BenzFactory implements IFactory {
         Underpan underpan = new Underpan();
         ICar car = new BenzCar(engine, wheel, underpan);
         return car;
+    }
+
+    @Override
+    public IBicycle createBicycle() {
+        return new BenzBicycle();
     }
 }
