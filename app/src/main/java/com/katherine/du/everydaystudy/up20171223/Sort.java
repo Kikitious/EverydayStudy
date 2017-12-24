@@ -11,15 +11,32 @@ public class Sort {
         int[] a = new int[]{60, 71, 49, 11, 82, 49, 3, 66};
 
 
-        //printArray(directInsertSort(a));
-        printArray(shellSort(a));
+        //directInsertSort(a);
+        //shellSort(a);
+        bubbleSort(a);
 
     }
 
     public static void printArray(int[] array) {
         for (int i = 0; i < array.length; i++) {
-            System.out.println(array[i]);
+            System.out.print(array[i] + "  ");
         }
+        System.out.println();
+    }
+
+    public static int[] bubbleSort(int[] array) {
+        int n = array.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - 1 - i; j++) {
+                if (array[j + 1] < array[j]) {
+                    int temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                }
+            }
+            printArray(array);
+        }
+        return array;
     }
 
 
@@ -39,6 +56,7 @@ public class Sort {
                 array[j + d] = temp;
             }
             d = d / 2;
+            printArray(array);
         }
         return array;
     }
@@ -58,6 +76,7 @@ public class Sort {
                 j--;
             }
             array[j + 1] = temp;
+            printArray(array);
         }
         return array;
     }
