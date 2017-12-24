@@ -11,9 +11,9 @@ public class Sort {
         int[] a = new int[]{60, 71, 49, 11, 82, 49, 3, 66};
 
 
-        //directInsertSort(a);
+        directInsertSort(a);
         //shellSort(a);
-        bubbleSort(a);
+//        bubbleSort(a);
 
     }
 
@@ -42,13 +42,11 @@ public class Sort {
 
     public static int[] shellSort(int[] array) {
         int n = array.length;
-        int i, j, d;
-        int temp;
-        d = n / 2;
+        int d = n / 2;
         while (d >= 1) {
-            for (i = d; i < n; i++) {
-                temp = array[i];
-                j = i - d;
+            for (int i = d; i < n; i++) {
+                int temp = array[i];
+                int j = i - d;
                 while (j >= 0 && temp < array[j]) {
                     array[j + d] = array[j];
                     j = j - d;
@@ -64,12 +62,9 @@ public class Sort {
     public static int[] directInsertSort(int[] array) {
         int n = array.length;
 
-        int i, j;
-        int temp;
-
-        for (i = 1; i < n; i++) {
-            temp = array[i];
-            j = i - 1;
+        for (int i = 1; i < n; i++) {
+            int temp = array[i];
+            int j = i - 1;
 
             while (j >= 0 && temp < array[j]) {
                 array[j + 1] = array[j];
