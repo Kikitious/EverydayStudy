@@ -14,7 +14,8 @@ public class Sort {
 //        directInsertSort(a);
         //shellSort(a);
 //        bubbleSort(a);
-        printArray(quickSort(a, 0, a.length - 1));
+//        printArray(quickSort(a, 0, a.length - 1));
+        selectSort(a);
 
     }
 
@@ -23,6 +24,24 @@ public class Sort {
             System.out.print(array[i] + "  ");
         }
         System.out.println();
+    }
+
+    public static void selectSort(int[] array) {
+        int n = array.length;
+        for (int i = 0; i < n - 1; i++) {
+            int min = i;
+            for (int j = i + 1; j < n; j++) {
+                if (array[j] < array[min]) {
+                    min = j;
+                }
+            }
+            if (min != i) {
+                int temp = array[i];
+                array[i] = array[min];
+                array[min] = temp;
+            }
+            printArray(array);
+        }
     }
 
     public static int[] quickSort(int[] array, int low, int high) {
