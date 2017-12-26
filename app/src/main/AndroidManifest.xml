@@ -109,13 +109,20 @@
         <activity android:name="com.katherine.du.everydaystudy.up20171219.handlerthread.MyHandlerThreadActivity">
         </activity>
         <activity android:name="com.katherine.du.everydaystudy.up20171220.RxJavaTestActivity">
+
+        </activity>
+        <activity android:name="com.katherine.du.everydaystudy.up20171226.activity.ActivityA">
+
+        </activity>
+        <activity android:name="com.katherine.du.everydaystudy.up20171226.activity.ActivityB">
+        </activity>
+        <activity android:name="com.katherine.du.everydaystudy.up20171226.container.ActivityContainer">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
         <!--另一个进程-->
         <service
             android:name="com.katherine.du.everydaystudy.up20171214.aidl.server.BookManagerService"
