@@ -5,6 +5,8 @@ import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -26,6 +28,19 @@ public class DownloadActivirty extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text);
         textView = (ScrollTextView) findViewById(R.id.tv);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG, "onClick: ");
+            }
+        });
+        textView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                Log.i(TAG, "onTouch: ");
+                return false;
+            }
+        });
 
         Button bt = (Button) findViewById(R.id.bt);
         bt.setOnClickListener(new View.OnClickListener() {

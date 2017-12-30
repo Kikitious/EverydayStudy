@@ -2,6 +2,8 @@ package com.katherine.du.everydaystudy.up20171227;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.widget.Scroller;
 
 /**
@@ -9,7 +11,7 @@ import android.widget.Scroller;
  */
 
 public class ScrollTextView extends android.support.v7.widget.AppCompatTextView {
-
+    private static final String TAG = "ScrollTextView";
     private int mLastY;
     private int mLastX;
     private Scroller scroller;
@@ -48,4 +50,9 @@ public class ScrollTextView extends android.support.v7.widget.AppCompatTextView 
         }
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        Log.i(TAG, "onTouchEvent: hahah");
+        return true;
+    }
 }
