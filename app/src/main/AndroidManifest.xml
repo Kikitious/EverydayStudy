@@ -117,6 +117,8 @@
         <activity android:name="com.katherine.du.everydaystudy.up20171226.activity.ActivityB">
         </activity>
         <activity android:name="com.katherine.du.everydaystudy.up20171226.container.ActivityContainer">
+        </activity>
+        <activity android:name="com.katherine.du.everydaystudy.up20171227.DownloadActivirty">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
