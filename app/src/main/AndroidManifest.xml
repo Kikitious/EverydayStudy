@@ -119,6 +119,8 @@
         <activity android:name="com.katherine.du.everydaystudy.up20171226.container.ActivityContainer">
         </activity>
         <activity android:name="com.katherine.du.everydaystudy.up20171227.DownloadActivirty">
+        </activity>
+        <activity android:name="com.katherine.du.everydaystudy.up20180107.CountDownButton">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
