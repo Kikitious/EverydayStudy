@@ -1,16 +1,38 @@
 package com.example;
 
 public class MyClass {
+    private static ThreadLocal<Boolean> mBooleanThreadLocal = new ThreadLocal<>();
 
 
     public static void main(String[] args) {
-        test();
-        System.out.println(binarySearch(new int[]{2, 4, 5, 8, 17, 24, 44, 52}, 6, 6));
-        System.out.println(~3);
-        System.out.println(~4);
-        System.out.println(~5);
+//        test();
+//        System.out.println(binarySearch(new int[]{2, 4, 5, 8, 17, 24, 44, 52}, 6, 6));
+//        System.out.println(~3);
+//        System.out.println(~4);
+//        System.out.println(~5);
+//
+//        System.out.println(Integer.parseInt("0000000000000100", 2));
 
-        System.out.println(Integer.parseInt("0000000000000100", 2));
+        mBooleanThreadLocal.set(true);
+        System.out.println(mBooleanThreadLocal.get());
+
+        new Thread("Thread2") {
+            @Override
+            public void run() {
+                super.run();
+                mBooleanThreadLocal.set(false);
+                System.out.println("Thread2 " + mBooleanThreadLocal.get());
+            }
+        }.start();
+
+        new Thread("Thread3") {
+            @Override
+            public void run() {
+                super.run();
+                mBooleanThreadLocal.set(true);
+                System.out.println("Thread3 " + mBooleanThreadLocal.get());
+            }
+        }.start();
 
     }
 
