@@ -127,10 +127,16 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name="com.katherine.du.everydaystudy.up20180114.client.AIDLClientActivity">
+        </activity>
         <!--另一个进程-->
         <service
             android:name="com.katherine.du.everydaystudy.up20171214.aidl.server.BookManagerService"
             android:process=":remote">
+        </service>
+        <service
+            android:name="com.katherine.du.everydaystudy.up20180114.server.AIDLService"
+            android:process=":notebook.remote">
         </service>
 
         <provider
